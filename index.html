@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How we would value your business | Organic Capital</title>
+  <meta name="description" content="Answer a few general questions and get a prompt for your own AI assistant that writes a valuation report using Organic Capital’s framework. Your financial information never leaves your hands.">
+  <link rel="icon" type="image/png" href="assets/img/oc-mark.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-header__logo" id="logo-link" href="https://www.organic-capital.com" target="_top" rel="noopener">
+      <img src="assets/img/oc-logo.png" alt="Organic Capital" width="140" height="55">
+    </a>
+  </header>
+
+  <main class="page">
+    <noscript>
+      <p class="notice">This tool builds your prompt in your browser, so it needs JavaScript turned on.</p>
+    </noscript>
+
+    <!-- View 1: the general questions -->
+    <section id="view-form" aria-labelledby="form-title">
+      <p class="eyebrow">For business owners</p>
+      <h1 id="form-title">See how we would value your business. Keep your numbers to yourself.</h1>
+      <p class="lede">Answer a few general questions and we will give you a prompt to paste into your own AI assistant. It asks about your financials privately, then writes a valuation report using the same framework Organic Capital applies to every business it considers.</p>
+
+      <ol class="steps" aria-label="How it works">
+        <li><span class="steps__num">1</span><span><strong>Describe your business in general terms.</strong> Industry, age, location. About three minutes.</span></li>
+        <li><span class="steps__num">2</span><span><strong>Paste the prompt into your own AI.</strong> ChatGPT, Claude, Gemini or Copilot.</span></li>
+        <li><span class="steps__num">3</span><span><strong>Read your report.</strong> If you like what you see, get in touch. If not, no one is the wiser.</span></li>
+      </ol>
+
+      <p class="privacy"><strong>Nothing you enter here is sent to us.</strong> Your prompt is put together in your browser. We only hear from you if you decide to contact us.</p>
+
+      <form id="oc-form" novalidate>
+        <div id="form-sections"></div>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <div class="form-actions">
+          <button type="submit" class="btn btn--primary btn--large">Create my valuation prompt</button>
+          <p class="form-actions__note">Only the first section is required. Anything you skip, your AI will ask about.</p>
+        </div>
+      </form>
+    </section>
+
+    <!-- View 2: the prompt and next steps -->
+    <section id="view-result" aria-labelledby="result-title" hidden>
+      <button type="button" class="link-btn" id="edit-answers">&larr; Change my answers</button>
+      <p class="eyebrow">Your prompt is ready</p>
+      <h1 id="result-title" tabindex="-1">Paste this into your AI assistant</h1>
+      <p class="lede">It will confirm what it understands, then ask about your financials a few questions at a time. Your answers stay between you and your AI.</p>
+
+      <div class="prompt-card">
+        <div class="prompt-card__bar">
+          <span class="prompt-card__title">Organic Capital valuation prompt</span>
+          <span class="prompt-card__meta" id="prompt-meta"></span>
+        </div>
+        <pre class="prompt-card__text" id="prompt-text" tabindex="0" aria-label="Your valuation prompt"></pre>
+        <div class="prompt-card__actions">
+          <button type="button" class="btn btn--primary" id="copy-prompt">Copy the prompt</button>
+          <a class="btn btn--secondary" id="open-assistant" target="_blank" rel="noopener" hidden></a>
+          <button type="button" class="btn btn--ghost" id="download-prompt">Download as a text file</button>
+          <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="panel">
+          <h2>Have these beside you</h2>
+          <ul class="ticks">
+            <li>Financial statements or tax returns for the last three to five years</li>
+            <li>Year-to-date sales and profit</li>
+            <li>What the owners and family members are paid, in total</li>
+            <li>Your lease, or a rough value for the property if you own it</li>
+            <li>A rough value for equipment and inventory</li>
+            <li>Any business debt</li>
+          </ul>
+          <p class="panel__note">Round numbers are fine. You never need to name the business.</p>
+        </div>
+        <div class="panel">
+          <h2>Keeping it private</h2>
+          <ul class="ticks">
+            <li>Use an AI assistant you already trust.</li>
+            <li>Most assistants have a setting that stops your chats being used to train their models. Turn it on if you prefer.</li>
+            <li>You can leave out names of customers, staff and the business itself.</li>
+            <li>Organic Capital cannot see your conversation.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel panel--fit" id="fit-panel" hidden>
+        <h2>A first read on fit</h2>
+        <p>Based only on your general answers, here is how your business lines up with what Organic Capital usually looks for. Your report will give a fuller picture once your AI has the numbers.</p>
+        <ul class="fit-list" id="fit-list"></ul>
+      </div>
+
+      <h2 class="section-title">Like what you see in your report?</h2>
+      <p class="section-intro">The report is a starting point, not an offer. If the approach makes sense to you, here is how to start a conversation.</p>
+
+      <div class="next-grid">
+        <div class="next-card">
+          <h3>Share your summary</h3>
+          <p>When your report is done, your AI will offer to write a one-page summary for Organic Capital. You choose whether it shows exact figures, rounded ranges or no figures at all. Send it by email or paste it into the form below.</p>
+        </div>
+        <div class="next-card">
+          <h3>Email <span data-contact-first></span></h3>
+          <p>Opens a message in your own email app, with your general answers included so you do not have to retype them. You can edit it before sending.</p>
+          <a class="btn btn--secondary" id="email-link" href="#">Write an email</a>
+        </div>
+        <div class="next-card" id="booking-card" hidden>
+          <h3>Book a call</h3>
+          <p>Pick a time for a confidential, no-obligation conversation.</p>
+          <a class="btn btn--secondary" id="booking-link" href="#" target="_blank" rel="noopener">Choose a time</a>
+        </div>
+      </div>
+
+      <form class="contact" id="contact-form" novalidate>
+        <h3>Or send us a note</h3>
+        <div class="grid">
+          <div class="field">
+            <label for="c-name">Your name</label>
+            <input type="text" id="c-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="c-email">Email</label>
+            <input type="email" id="c-email" name="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="c-phone">Phone <span class="optional">optional</span></label>
+            <input type="tel" id="c-phone" name="phone" autocomplete="tel">
+          </div>
+          <div class="field field--wide">
+            <label for="c-message">Message <span class="optional">optional</span></label>
+            <textarea id="c-message" name="message" rows="5" placeholder="Tell us a little about what you are looking for, or paste the summary from your report."></textarea>
+          </div>
+          <div class="field field--wide hp" aria-hidden="true">
+            <label for="c-company">Leave this field empty</label>
+            <input type="text" id="c-company" name="company" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="field field--wide">
+            <label class="check-inline">
+              <input type="checkbox" id="c-include" checked>
+              <span>Include my general answers from the form (industry, age, location and so on)</span>
+            </label>
+          </div>
+        </div>
+        <p class="form-error" id="contact-error" role="alert" hidden></p>
+        <div class="form-actions">
+          <button type="submit" class="btn btn--primary" id="contact-submit">Send</button>
+          <p class="form-actions__note" id="contact-note"></p>
+        </div>
+        <p class="contact__done" id="contact-done" role="status" hidden></p>
+      </form>
+    </section>
+
+    <footer class="fineprint">
+      <p>The report is written by your AI assistant, not by Organic Capital. It is an indicative estimate based on information you provide and that no one has verified. It is not an offer, a formal valuation or appraisal, or tax, legal or accounting advice. Any offer from Organic Capital would follow its own review and due diligence and may differ.</p>
+    </footer>
+  </main>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/prompt.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
